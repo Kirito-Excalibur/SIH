@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {auth} from '../firebase';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,18 +9,30 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import useAuth from '../hooks/useAuth';
+import {signOut} from 'firebase/auth';
 
 const HomeScreen = ({navigation}) => {
+  const {user} = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigation.navigate('Auth');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Your App</Text>
       <Text style={styles.subtitle}>
         Your app's tagline or brief description goes here.
       </Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Auth')}>
-        <Text style={styles.buttonText}>Get Started</Text>
+      {user && <Text style={styles.email}>Logged in as: {user.email}</Text>}
+      <TouchableOpacity style={styles.button} onPress={handleLogout}>
+        <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
     </View>
   );
@@ -54,6 +66,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 30,
+    marginTop: 30,
+  },
+  email: {
+    fontSize: 16,
+    marginBottom: 20,
   },
   buttonText: {
     color: 'white',

@@ -1,34 +1,78 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from 'react-native';
+import {auth} from '../firebase';
 
-const AuthenticationPage = () => {
+const AuthenticationPage = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // add loading state
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Implement your login logic here
+    if (email && password) {
+      setLoading(true); // set loading to true
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigation.navigate('Home');
+      } catch (err) {
+        console.log('got error', err.message);
+        setError(err.message);
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
+      }
+      setLoading(false); // set loading to false after login attempt
+    }
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // Implement your registration logic here
+    if (email && password) {
+      setLoading(true); // set loading to true
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        navigation.navigate('Home');
+      } catch (err) {
+        console.log('got error', err.message);
+        setError(err.message);
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
+      }
+      setLoading(false); // set loading to false after registration attempt
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Authentication</Text>
+      <Text style={styles.header}>Anthracite</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={text => setEmail(text)}
         value={email}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={text => setPassword(text)}
         value={password}
       />
+      {loading && <Text>Loading...</Text>}
+      {error && <Text style={{color: 'red'}}>{error}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
@@ -49,6 +93,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     marginBottom: 20,
+    color: 'black',
+    fontWeight: 'bold',
   },
   input: {
     width: '80%',

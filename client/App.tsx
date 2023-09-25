@@ -19,19 +19,49 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './pages/HomeScreen';
 import AuthenticationPage from './pages/AuthenticationPage';
+import useAuth from './hooks/useAuth';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{headerShown: false}}
-        initialRouteName="Home">
-        <Stack.Screen name="Auth" component={AuthenticationPage} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  const {user} = useAuth();
+
+  if (user) {
+    return (
+      <>
+        <StatusBar
+          translucent={true}
+     
+          barStyle="light-content"
+      
+        />
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{headerShown: false}}
+            initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <StatusBar
+          translucent={true}
+       
+          barStyle="light-content"
+       
+        />
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{headerShown: false}}
+            initialRouteName="Auth">
+            <Stack.Screen name="Auth" component={AuthenticationPage} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
