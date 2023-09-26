@@ -28,12 +28,6 @@ const App = () => {
   if (user) {
     return (
       <>
-        <StatusBar
-          translucent={true}
-     
-          barStyle="light-content"
-      
-        />
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
@@ -46,12 +40,6 @@ const App = () => {
   } else {
     return (
       <>
-        <StatusBar
-          translucent={true}
-       
-          barStyle="light-content"
-       
-        />
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}

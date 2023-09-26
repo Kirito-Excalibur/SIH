@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import useAuth from '../hooks/useAuth';
 import {signOut} from 'firebase/auth';
+import TopBar from '../components/TopBar';
 
 const HomeScreen = ({navigation}) => {
   const {user} = useAuth();
@@ -25,16 +26,20 @@ const HomeScreen = ({navigation}) => {
   };
 
   return (
+    <>
+    <TopBar />
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Your App</Text>
+    
+      <Text style={styles.title}>Welcome to Anthracite</Text>
       <Text style={styles.subtitle}>
-        Your app's tagline or brief description goes here.
+        I hope we can change the world with this!
       </Text>
       {user && <Text style={styles.email}>Logged in as: {user.email}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
     </View>
+    </>
   );
 };
 
