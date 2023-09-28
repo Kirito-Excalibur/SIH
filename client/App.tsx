@@ -17,14 +17,14 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './pages/HomeScreen';
-import AuthenticationPage from './pages/AuthenticationPage';
+
 import useAuth from './hooks/useAuth';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import History from './pages/History';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import Login from './pages/Login';
+import Chatbot from './pages/Chatbot';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -38,8 +38,8 @@ const App = () => {
         <NavigationContainer>
           <Drawer.Navigator
             screenOptions={{headerShown: false}}
-            initialRouteName="Home">
-            <Drawer.Screen name="Home" component={HomeScreen} />
+            initialRouteName="Chatbot">
+            <Drawer.Screen name="Chatbot" component={Chatbot} />
             <Drawer.Screen name="Profile" component={Profile} />
             <Drawer.Screen name="History" component={History} />
           </Drawer.Navigator>
@@ -52,7 +52,7 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
-            initialRouteName="Signin">
+            initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signin" component={SignIn} />
           </Stack.Navigator>

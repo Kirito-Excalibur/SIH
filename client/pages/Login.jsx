@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
       setLoading(true); // set loading to true
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        navigation.navigate('Home');
+        navigation.navigate('Chatbot');
       } catch (err) {
         console.log('got error', err.message);
         setError(err.message);
@@ -38,23 +38,6 @@ const Login = ({navigation}) => {
     }
   };
 
-  const handleRegister = async () => {
-    // Implement your registration logic here
-    if (email && password) {
-      setLoading(true); // set loading to true
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        navigation.navigate('Home');
-      } catch (err) {
-        console.log('got error', err.message);
-        setError(err.message);
-        setTimeout(() => {
-          setError(null);
-        }, 3000);
-      }
-      setLoading(false); // set loading to false after registration attempt
-    }
-  };
 
   return (
     <LinearGradient
