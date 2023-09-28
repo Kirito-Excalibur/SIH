@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   topbar: {
     height: 80,
     flexDirection: 'row',
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     justifyContent: 'space-around',
     alignItems: 'center',
     borderBottomWidth: 1,

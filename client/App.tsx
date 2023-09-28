@@ -23,6 +23,8 @@ import useAuth from './hooks/useAuth';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import History from './pages/History';
 import Profile from './pages/Profile';
+import SignIn from './pages/SignIn';
+import Login from './pages/Login';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -50,8 +52,9 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
-            initialRouteName="Auth">
-            <Stack.Screen name="Auth" component={AuthenticationPage} />
+            initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signin" component={SignIn} />
           </Stack.Navigator>
         </NavigationContainer>
       </>
