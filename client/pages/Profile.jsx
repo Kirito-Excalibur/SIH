@@ -13,31 +13,12 @@ import useAuth from '../hooks/useAuth';
 import {signOut} from 'firebase/auth';
 import TopBar from '../components/TopBar';
 
-const HomeScreen = ({navigation}) => {
-  const {user} = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigation.navigate('Auth');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+const Profile = ({navigation}) => {
   return (
     <>
-      <TopBar navigation={navigation} />
-
+      <TopBar  navigation={navigation}/>
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Anthracite</Text>
-        <Text style={styles.subtitle}>
-          I hope we can change the world with this!
-        </Text>
-        {user && <Text style={styles.email}>Logged in as: {user.email}</Text>}
-        <TouchableOpacity style={styles.button} onPress={handleLogout}>
-          <Text style={styles.buttonText}>Log Out</Text>
-        </TouchableOpacity>
+        <Text style={styles.title}>Profile is here</Text>
       </View>
     </>
   );
@@ -84,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Profile;

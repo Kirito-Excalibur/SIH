@@ -20,20 +20,27 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './pages/HomeScreen';
 import AuthenticationPage from './pages/AuthenticationPage';
 import useAuth from './hooks/useAuth';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import History from './pages/History';
+import Profile from './pages/Profile';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
+
   const {user} = useAuth();
 
   if (user) {
     return (
       <>
         <NavigationContainer>
-          <Stack.Navigator
+          <Drawer.Navigator
             screenOptions={{headerShown: false}}
             initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
+            <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Profile" component={Profile} />
+            <Drawer.Screen name="History" component={History} />
+          </Drawer.Navigator>
         </NavigationContainer>
       </>
     );
