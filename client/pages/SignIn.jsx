@@ -29,7 +29,7 @@ const SignIn = ({navigation}) => {
       setLoading(true); // set loading to true
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        navigation.navigate('Home');
+        navigation.navigate('Chatbot');
       } catch (err) {
         console.log('got error', err.message);
         setError(err.message);
@@ -83,7 +83,11 @@ const SignIn = ({navigation}) => {
         {error && <Text style={{color: 'red'}}>{error}</Text>}
 
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Sign In</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{paddingTop}} onPress={handleRegister}>
+          <Text style={styles.buttonText}>Already Have an account? Log In</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>

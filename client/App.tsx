@@ -41,6 +41,7 @@ const App = () => {
     return (
       <>
         <NavigationContainer>
+          <StatusBar backgroundColor="#A1EEFF" />
           <Drawer.Navigator
             drawerContent={props => <CustomDrawer {...props} />}
             screenOptions={{headerShown: false}}
@@ -126,6 +127,7 @@ const App = () => {
     return (
       <>
         <NavigationContainer>
+          <StatusBar backgroundColor="#A1EEFF" />
           <Stack.Navigator
             screenOptions={{headerShown: false}}
             initialRouteName="Login">

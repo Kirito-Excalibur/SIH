@@ -72,7 +72,7 @@ const Login = ({navigation}) => {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.signup}
+          style={styles.button}
           onPress={() => navigation.navigate('Signin')}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -85,14 +85,6 @@ const styles = StyleSheet.create({
   linear: {
     flex: 1,
     width: '100%',
-  },
-  signup: {
-    backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 5,
-    width: '80%',
-    alignItems: 'center',
-    marginTop: 10,
   },
   password: {
     width: '100%',
@@ -110,7 +102,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
   },
   header: {
-    fontSize: 24,
+    fontSize: 44,
     marginBottom: 20,
     color: 'black',
     fontWeight: 'bold',
@@ -151,6 +143,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'black',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
