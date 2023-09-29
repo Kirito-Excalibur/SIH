@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import SelectDropdown from 'react-native-select-dropdown';
 import {auth} from '../firebase';
 
 const SignIn = ({navigation}) => {
