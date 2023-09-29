@@ -11,7 +11,7 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-
+import Svg, {Path} from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
 import {auth} from '../firebase';
 
@@ -46,7 +46,12 @@ const SignIn = ({navigation}) => {
       colors={['#FFFFFF', '#DDFAFF', '#DDFAFF']}
       style={styles.linear}>
       <View style={styles.container}>
-        <Text style={styles.header}>Hello Guys!</Text>
+        <Image
+          height={20}
+          width={20}
+          style={styles.image}
+          source={require('../assets/MOC.png')}
+        />
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -89,6 +94,13 @@ const styles = StyleSheet.create({
   linear: {
     flex: 1,
     width: '100%',
+  },
+  image: {
+    opacity: 1,
+    resizeMode: 'contain',
+    width: '30%',
+    position: 'absolute',
+    top: '10%',
   },
   container: {
     flex: 1,

@@ -38,7 +38,6 @@ const Login = ({navigation}) => {
     }
   };
 
-
   return (
     <LinearGradient
       colors={['#FFFFFF', '#DDFAFF', '#DDFAFF']}
@@ -72,6 +71,11 @@ const Login = ({navigation}) => {
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.signup}
+          onPress={() => navigation.navigate('Signin')}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -81,6 +85,14 @@ const styles = StyleSheet.create({
   linear: {
     flex: 1,
     width: '100%',
+  },
+  signup: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+    width: '80%',
+    alignItems: 'center',
+    marginTop: 10,
   },
   password: {
     width: '100%',
