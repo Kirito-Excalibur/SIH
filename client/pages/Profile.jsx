@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {auth} from '../firebase';
 import {
   Image,
@@ -16,37 +16,62 @@ import {signOut} from 'firebase/auth';
 import TopBar from '../components/TopBar';
 
 const Profile = ({navigation}) => {
+  const [name, setName] = useState('Savit');
+  const [email, setEmail] = useState('savit@gmail.com');
+  const [phone, setPhone] = useState('1234567890');
+  const [gender, setGender] = useState('Male');
+  const [editable, setEditable] = useState(false);
+
   return (
     <>
       <TopBar navigation={navigation} />
-      <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{
+          justifyContent: 'center',
+          alignContent: 'flex-end',
+          alignItems: 'center',
+        }}>
+        <Image style={styles.image} source={require('../assets/profile.jpg')} />
         <View style={styles.form}>
-          <Image
-            style={styles.image}
-            source={require('../assets/profile.jpg')}
-          />
           <View style={styles.data_form}>
             <View style={styles.data_input}>
               <Text style={styles.title}>Name</Text>
-              <TextInput style={styles.input} />
+              <TextInput
+                value={name}
+                editable={editable}
+                style={styles.input}
+              />
             </View>
             <View style={styles.data_input}>
               <Text style={styles.title}>Email</Text>
-              <TextInput style={styles.input} />
+              <TextInput
+                value={email}
+                editable={editable}
+                style={styles.input}
+              />
             </View>
             <View style={styles.data_input}>
               <Text style={styles.title}>Phone no.</Text>
-              <TextInput style={styles.input} />
+              <TextInput
+                value={phone}
+                editable={editable}
+                style={styles.input}
+              />
             </View>
             <View style={styles.data_input}>
               <Text style={styles.title}>Gender</Text>
-              <TextInput style={styles.input} />
+              <TextInput
+                value={gender}
+                editable={editable}
+                style={styles.input}
+              />
             </View>
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Signin')}>
-            <Text style={styles.buttonText}>Edit</Text>
+            onPress={() => setEditable(!editable)}>
+            <Text style={styles.buttonText}>{editable ? 'Save' : 'Edit'}</Text>
           </TouchableOpacity>
         </View>
 
@@ -56,7 +81,7 @@ const Profile = ({navigation}) => {
           style={styles.moc}
           source={require('../assets/MOC.png')}
         />
-      </View>
+      </ScrollView>
     </>
   );
 };
@@ -65,7 +90,6 @@ const styles = StyleSheet.create({
   moc: {
     resizeMode: 'contain',
     width: 100,
-    bottom: -40,
   },
   data_input: {
     width: '80%',
@@ -97,17 +121,17 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     width: 150,
     height: 150,
-    borderColor: 'red',
+    // borderColor: 'red',
+    borderWidth: 1,
+    zIndex: 5,
     resizeMode: 'contain',
     // position: 'absolute',
   },
   container: {
     flex: 1,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
+    paddingTop: 20,
+    // borderColor: 'red',
+    // borderWidth: 1,
     backgroundColor: '#ffffff',
   },
   form: {
